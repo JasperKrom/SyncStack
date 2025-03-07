@@ -3,11 +3,11 @@
 namespace RapideSoftware\SyncStack;
 
 use Illuminate\Support\ServiceProvider;
-use RapideSoftware\SyncStack\Migrations\MigrateMakeCommand;
-use RapideSoftware\SyncStack\Commands\InitializeSynchronisationCommand;
+use RapideSoftware\SyncStack\Commands\MakeSynchronisationMigrationCommand;
 use RapideSoftware\SyncStack\Commands\MakeSynchronisationCommand;
 use RapideSoftware\SyncStack\Commands\RollbackSynchronisationCommand;
 use RapideSoftware\SyncStack\Commands\RunSynchronisationsCommand;
+use RapideSoftware\SyncStack\Database\Migrations\Commands\MigrateMakeCommand;
 
 class SyncStackServiceProvider extends ServiceProvider
 {
@@ -18,7 +18,7 @@ class SyncStackServiceProvider extends ServiceProvider
                 MakeSynchronisationCommand::class,
                 RunSynchronisationsCommand::class,
                 RollbackSynchronisationCommand::class,
-                InitializeSynchronisationCommand::class,
+                MakeSynchronisationMigrationCommand::class,
                 MigrateMakeCommand::class
             ]);
         }

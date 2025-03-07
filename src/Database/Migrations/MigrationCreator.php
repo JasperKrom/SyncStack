@@ -1,6 +1,6 @@
 <?php
 
-namespace RapideSoftware\SyncStack\Migrations;
+namespace RapideSoftware\SyncStack\Database\Migrations;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;

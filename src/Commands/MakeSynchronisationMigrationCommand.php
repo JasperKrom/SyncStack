@@ -4,7 +4,7 @@ namespace RapideSoftware\SyncStack\Commands;
 
 use Illuminate\Console\Command;
 
-class InitializeSynchronisationCommand extends Command
+class MakeSynchronisationMigrationCommand extends Command
 {
     protected $signature = 'sync:migrate {--path= : The location where the migration file should be created}
     {--realpath : Indicate any provided migration file paths are pre-resolved absolute paths}';

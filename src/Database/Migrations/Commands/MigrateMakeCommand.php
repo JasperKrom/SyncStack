@@ -1,8 +1,9 @@
 <?php
 
-namespace RapideSoftware\SyncStack\Migrations;
+namespace RapideSoftware\SyncStack\Database\Migrations\Commands;
 
 use Illuminate\Support\Composer;
+use RapideSoftware\SyncStack\Database\Migrations\MigrationCreator;
 
 class MigrateMakeCommand extends \Illuminate\Database\Console\Migrations\MigrateMakeCommand
 {
