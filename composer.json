@@ -1,0 +1,66 @@
+{
+    "name": "rapide-software/sync-stack",
+    "description": "A package for creating and running synchronisations after a deploy, running only those which have not run yet, akin to migrations. Useful for CI/CD integration or multidatabase solutions where what has run before is not necessarily in sync across databases.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "RapideSoftware\\SyncStack\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jasper Krom",
+            "email": "jasper@rapide.software"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.0.0",
+        "illuminate/support": "^12.1",
+        "illuminate/console": "^12.1",
+        "illuminate/database": "^12.1"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rapidesoftware\\Syncstack\\SyncStackServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.1",
+        "phpunit/phpunit": "^11.5"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve --ansi"
+        ],
+        "test": [
+            "@clear",
+            "@php vendor/bin/phpunit"
+        ]
+    }
+}
