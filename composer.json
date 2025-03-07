@@ -18,9 +18,9 @@
     "prefer-stable": true,
     "require": {
         "php": "^8.0.0",
-        "illuminate/support": "^12.1",
-        "illuminate/console": "^12.1",
-        "illuminate/database": "^12.1"
+        "illuminate/support": "^v11.44.1",
+        "illuminate/console": "^v11.44.1",
+        "illuminate/database": "^v11.44.1"
     },
     "extra": {
         "laravel": {
