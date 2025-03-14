@@ -25,7 +25,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Rapidesoftware\\Syncstack\\Src\\SyncStackServiceProvider"
+                "RapideSoftware\\SyncStack\\SyncStackServiceProvider"
             ]
         }
     },
