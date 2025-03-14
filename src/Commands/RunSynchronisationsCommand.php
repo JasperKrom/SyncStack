@@ -37,11 +37,12 @@ class RunSynchronisationsCommand extends InstantiatorCommand
                     }
 
                     $instance->sync();
-                    $this->info('Synchronised '.$instance::class);
                     $hasSynced = true;
 
                     // Update the database so it knows the sync has run
                     $syncPersistor->create($syncPath, $currentBatch);
+
+                    $this->info('Synchronised '.$instance::class);
                 } catch (Exception $exception) {
                     $this->error($exception->getMessage());
                     $this->error($exception->getTraceAsString());

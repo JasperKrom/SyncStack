@@ -44,6 +44,8 @@ class MakeSynchronisationCommand extends Command {
         $this->filesystem->ensureDirectoryExists(dirname($path));
 
         $this->filesystem->put($path, $this->content($baseClass));
+
+        $this->info('Sync created at '. $path);
     }
 
     protected function getDatePrefix(): string {
