@@ -43,6 +43,7 @@ class RunSynchronisationsCommand extends InstantiatorCommand
                     $syncPersistor->create($syncPath, $currentBatch);
 
                     $this->info('Synchronised '.$instance::class);
+
                 } catch (Exception $exception) {
                     $this->error($exception->getMessage());
                     $this->error($exception->getTraceAsString());
