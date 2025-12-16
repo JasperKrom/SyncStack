@@ -26,7 +26,7 @@ class RunSynchronisationsCommand extends InstantiatorCommand
         $currentBatch = $syncRepository->lastBatchNumber() + 1;
 
         foreach ($this->filesystem->allFiles($directory) as $file) {
-            $syncPath = $this->getSyncPath($file->getRealPath(), $syncsLocation);
+            $syncPath = $this->getSyncPath($file->getRealPath(), base_path());
             $hasSynced = false;
 
             if (!$syncRepository->hasRun($syncPath)) {
