@@ -13,15 +13,11 @@ class RollbackSynchronisationCommand extends InstantiatorCommand {
     use LocationTrait;
 
     protected $signature = 'sync:rollback
-    {--location=Synchronisations : The base location where your files are placed, searched recursively. By default it is app_path().\'Synchronisations\'.}
-    {--fromBasePath : The location you gave starts from the base_path() and assumes nothing about naming conventions. Otherwise it starts from app_path() and expects Str::Studly naming convention for your folders and classes.}
     {--continueOnFailure : By default it stops rolling back syncs if one errors out. If syncs are order agnostic, you may want to continue to rollback the next sync if one fails.}';
 
     protected $description = 'Rollback last batch of sync commands.';
 
     public function handle(SynchronisationRepository $syncRepository): void {
-        $syncsLocation = $this->option('location');
-        $directory = $this->determineLocation($syncsLocation);
         $syncs = $syncRepository->lastBatch();
 
         // Short circuit and inform if no syncs are found
@@ -32,7 +28,7 @@ class RollbackSynchronisationCommand extends InstantiatorCommand {
         /** @var Synchronisation $sync */
         foreach($syncs as $sync) {
             try {
-                if (($instance = $this->getInstance($directory.$sync->path)) === null) {
+                if (($instance = $this->getInstance(base_path().$sync->path)) === null) {
                     continue;
                 }
 
