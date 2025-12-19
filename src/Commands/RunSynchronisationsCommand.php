@@ -20,8 +20,7 @@ class RunSynchronisationsCommand extends InstantiatorCommand
     protected $description = 'Run all new sync commands.';
 
     public function handle(SynchronisationRepository $syncRepository, SynchronisationPersistor $syncPersistor): void {
-        $syncsLocation = $this->option('location');
-        $directory = $this->determineLocation($syncsLocation);
+        $directory = $this->determineLocation($this->option('location'));
 
         $currentBatch = $syncRepository->lastBatchNumber() + 1;
 
@@ -36,7 +35,7 @@ class RunSynchronisationsCommand extends InstantiatorCommand
                         continue;
                     }
 
-                    $instance->sync();
+                    app()->call([$instance, 'sync']);
                     $hasSynced = true;
 
                     // Update the database so it knows the sync has run
