@@ -62,11 +62,11 @@ class MakeSynchronisationCommand extends Command {
 return new class %s{
 
     public function sync(): void {
-        // TODO: Insert sync logic here - These are not wrapped in a transaction by the sync runner, do so manually if needed.
+        // TODO: Insert sync logic here - These are not wrapped in a transaction by the sync runner, do so manually if needed. DI is available in sync() function.
     }
 
     public function rollback(): void {
-        // TODO: Insert rollback logic here - These are not wrapped in a transaction by the rollback runner, do so manually if needed.
+        // TODO: Insert rollback logic here - These are not wrapped in a transaction by the rollback runner, do so manually if needed. DI is available in rollback() function.
     }
 };", $baseClass);
     }
