@@ -24,6 +24,11 @@ class RunSynchronisationsCommand extends InstantiatorCommand
 
         $currentBatch = $syncRepository->lastBatchNumber() + 1;
 
+        if(!$this->filesystem->exists($directory)) {
+            $this->warn('Directory not created.');
+            return;
+        }
+
         foreach ($this->filesystem->allFiles($directory) as $file) {
             $syncPath = $this->getSyncPath($file->getRealPath(), base_path());
             $hasSynced = false;
