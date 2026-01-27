@@ -32,7 +32,8 @@ class RollbackSynchronisationCommand extends InstantiatorCommand {
                     continue;
                 }
 
-                $instance->rollback();
+                app()->call([$instance, 'rollback']);
+
                 $sync->deleteOrFail();
             } catch (Exception $exception) {
                 $this->error('Something went wrong! Check your rollback code. It is possible a partial rollback has happened.');
