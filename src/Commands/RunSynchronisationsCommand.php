@@ -15,7 +15,8 @@ class RunSynchronisationsCommand extends InstantiatorCommand
     protected $signature = 'sync:run
     {--location=Synchronisations : The base location where your files are placed, searched recursively. By default it is app_path().\'Synchronisations\'.}
     {--fromBasePath : The location you gave starts from the base_path() and assumes nothing about naming conventions. Otherwise it starts from app_path() and expects Str::Studly naming convention for your folders and classes.}
-    {--continueOnFailure : By default it stops doing syncs if one errors out. If syncs are order agnostic, you may want to continue to the next sync if one fails.}';
+    {--continueOnFailure : By default it stops doing syncs if one errors out. If syncs are order agnostic, you may want to continue to the next sync if one fails.}
+    {--fake : Register the synchronisations as run, without actually running them. Mainly useful for multi DB setups where a new DB gets spun up that does not require synchronising.}';
 
     protected $description = 'Run all new sync commands.';
 
@@ -40,7 +41,9 @@ class RunSynchronisationsCommand extends InstantiatorCommand
                         continue;
                     }
 
-                    app()->call([$instance, 'sync']);
+                    if (!$this->option('fake')) {
+                        app()->call([$instance, 'sync']);
+                    }
                     $hasSynced = true;
 
                     // Update the database so it knows the sync has run
